@@ -1,0 +1,1 @@
+import{am as n,an as l,ao as g}from"./index-D2QwjoYc.js";var o=l,c=g,u="Expected a function";function d(a,i,e){var r=!0,t=!0;if(typeof a!="function")throw new TypeError(u);return c(e)&&(r="leading"in e?!!e.leading:r,t="trailing"in e?!!e.trailing:t),o(a,i,{leading:r,maxWait:i,trailing:t})}var f=d;const E=n(f);export{E as L};
