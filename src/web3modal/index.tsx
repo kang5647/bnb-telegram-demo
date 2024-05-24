@@ -1,10 +1,9 @@
 import { AuthCoreContextProvider } from '@particle-network/auth-core-modal';
 import { createWeb3Modal, defaultConfig } from '@web3modal/ethers/react';
+import React from 'react';
 import { type ReactNode } from 'react';
 
 const projectId = import.meta.env.VITE_WALLETCONNECT_PROJECT_ID;
-
-console.log('Project ID:', projectId);
 
 // 2. Set chains
 const bnb_mainnet = {
