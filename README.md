@@ -36,13 +36,210 @@ Before you begin, ensure you have met the following requirements:
     npm run dev
     ```
 
-## Step 2: Set Up WalletConnect with WAGMI
+## Step 2: Writing Smart Contracts
+
+In this example, we are going to create ERC20 tokens and ERC721 NFTs with a custom mint function. We will also create a separate contract to handle token claiming. We use [Remix](https://remix.ethereum.org/) to compile and deploy the smart contracts.
+
+### Game Token Contract (ERC20) 
+```solidity
+// contracts/GLDToken.sol
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract GameToken is ERC20 {
+    constructor(uint256 initialSupply) ERC20("GameToken", "GT") {
+        _mint(msg.sender, initialSupply);
+    }
+}
+```
+### Game NFT Contract (ERC721)
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+
+contract GameNFT is ERC721 {
+    uint256 public nextTokenId;
+    address public admin;
+    IERC20 public gameToken;
+    uint256 public mintPrice;
+
+    struct Item {
+        string metadata;
+    }
+
+    mapping(uint256 => Item) public items;
+
+    constructor(address _gameToken, uint256 _mintPrice) ERC721("GameNFT", "GNFT") {
+        admin = msg.sender;
+        gameToken = IERC20(_gameToken);
+        mintPrice = _mintPrice;
+    }
+
+    function setMintPrice(uint256 _mintPrice) external {
+        require(msg.sender == admin, "only admin can set mint price");
+        mintPrice = _mintPrice;
+    }
+
+    function mint(string memory metadata) external {
+        require(gameToken.transferFrom(msg.sender, address(this), mintPrice), "payment failed");
+        uint256 tokenId = nextTokenId;
+        nextTokenId++;
+        _safeMint(msg.sender, tokenId);
+        items[tokenId] = Item(metadata);
+    }
+}
+
+```
+
+### TokenDistributor Contract
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+
+contract TokenDistributor {
+    IERC20 public gameToken;
+    address public admin;
+    uint256 public claimAmount;
+
+    constructor(address _tokenAddress) {
+        gameToken = IERC20(_tokenAddress);
+        admin = msg.sender;
+    }
+
+    modifier onlyAdmin() {
+        require(msg.sender == admin, "Only admin can perform this action");
+        _;
+    }
+
+    function setClaimAmount(uint256 amount) external onlyAdmin {
+        claimAmount = amount;
+    }
+
+    function claimTokens(address to) external {
+        require(claimAmount > 0, "Claim amount is not set");
+        require(gameToken.transfer(to, claimAmount), "Token transfer failed");
+    }
+}
+```
+## Step 4: Save the contract ABI
+Save the ABI (Application Binary Interface) of your smart contract as a TypeScript file.
+1. Generate the ABI: After compiling your smart contract, you will get the ABI from the build artifacts (usually a JSON file).
+![image](https://github.com/kang5647/bnb-telegram-demo/assets/76279908/e702a9cd-84a7-41c7-98a9-115695098db4)
+
+2. Save the ABI as a TypeScript file: Create a new TypeScript file to store the ABI (can be found in `contracts` folder).
+
+
+## Step 5: Creating Components
+
+In this example, we will create a simple counter app that allows users to claim tokens once they have incremented the counter 10 times. Below are the components we will create: `Claim`, `Mint`, `Counter`, and `ConnectButton`.
+
+### Folder Structure
+
+```plaintext
+src
+├── Components
+│   ├── Claim
+│   │   └── index.tsx
+│   ├── Mint
+│   │   └── index.tsx
+│   ├── Counter
+│   │   └── index.tsx
+│   └── ConnectButton
+        └── index.tsx
+├── App.jsx
+├── main.jsx
+└── index.css
+```
+
+### Homepage.jsx
+Puts together all other components (`Counter`, `Claim`, `Mint`, and `ConnectButton`)
+```jsx
+import React from 'react';
+import ConnectButton from './Components/ConnectButton';
+import Counter from './Components/Counter';
+import Claim from './Components/Claim';
+import Mint from './Components/Mint';
+
+type HomePageProps = {
+  count: number;
+  onCountChange: (newCount: number) => void;
+};
+
+const HomePage: React.FC<HomePageProps> = React.memo(({ count, onCountChange }) => {
+  return (
+    <main className='main-container'>
+      <h1>Earn $GT</h1>
+      <div className="button-container">
+        <ConnectButton />
+      </div>
+      <Counter count={count} onCountChange={onCountChange} />
+      <Claim count={count} />
+      <Mint />
+    </main>
+  );
+});
+
+export default HomePage;
+```
+
+### App.jsx
+Sets up the Web3 context using a custom Web3ModalProvider and includes a CounterProvider to manage the counter state. 
+
+```jsx
+import { Web3ModalProvider } from './web3modal';
+import { useCallback, useState } from 'react';
+import HomePage from './Homepage';
+
+const App = () => {
+  return (
+    <Web3ModalProvider>
+      <CounterProvider />
+    </Web3ModalProvider>
+  );
+};
+
+const CounterProvider = () => {
+  const [count, setCount] = useState(0);
+  const handleCountChange = useCallback((newCount: number) => {
+    setCount(newCount);
+  }, []);
+
+  return <HomePage count={count} onCountChange={handleCountChange} />;
+};
+
+export default App;
+
+```
+
+### Main Entry Point
+The entry point of the React application. It renders the App component into the root element of the HTML file. 
+
+```jsx
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.tsx'
+import './index.css'
+
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)
+
+```
 
 Refer to their official [documentation](https://docs.walletconnect.com/web3modal/react/about?platform=wagmi). WalletConnect's Web3Modal SDK provides simple-to-use wallet integration into Web3 App. 
 
-## Step 3: 
-
-
+## Step 4: Creating component
 
 ## Step 3: Publish to GitHub Pages
 
