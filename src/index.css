@@ -106,8 +106,13 @@ button:focus-visible {
   align-items: center;
 }
 
-.logo {
-  width: 80px; /* Adjust the size as needed */
-  height: auto;
-  margin-bottom: 0.5rem; /* Add margin to create space below the logo */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.main-container > * {
+  margin: 5px 0; /* Adds 20px margin above and below each child element */
+}
+
