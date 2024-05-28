@@ -314,6 +314,8 @@ Your app should now be live at `https://your-username.github.io/your-repo-name/`
 
     - Go to the BotFather chat and use the command `/newapp`.
     - Enter your app’s domain. Since you have deployed to GitHub Pages, the domain would be `https://your-username.github.io/your-repo-name/`.
+      
+<img src="https://github.com/kang5647/bnb-telegram-demo/assets/76279908/c54c17ba-d82b-4714-807b-10b99039f61e" alt="Example Image" width="450" height="100">
 
 3. **Test the integration:**
 
