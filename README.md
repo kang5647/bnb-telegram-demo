@@ -40,6 +40,7 @@ Before you begin, ensure you have met the following requirements:
     npm run dev
     ```
 <br>
+
 ## Step 2: Writing Smart Contracts
 
 In this example, we are going to create ERC20 tokens and ERC721 NFTs with a custom mint function. We will also create a separate contract to handle token claiming. We use [Remix](https://remix.ethereum.org/) to compile and deploy the smart contracts.
