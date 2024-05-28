@@ -156,7 +156,9 @@ VITE_WALLETCONNECT_PROJECT_ID=your_walletconnect_project_id
 ```
 ### Create Web3Modal Component
 Refer to WalletConnect official [documentation](https://docs.walletconnect.com/web3modal/react/about?platform=wagmi) for implementation guide.
+
 <br>
+
 ## Step 5: Creating Components
 
 In this example, we will create a simple counter app that allows users to claim tokens once they have incremented the counter 10 times. Below are the components we will create: `Claim`, `Mint`, `Counter`, and `ConnectButton`.
