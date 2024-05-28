@@ -2,6 +2,8 @@
 
 Follow these steps to create a Vite React application, integrate WalletConnect using WAGMI, publish it as a GitHub Page, and deploy it as a Telegram Mini App. This Web3 App aims to demonstrate common on-chain mechanics such as claiming tokens and using those tokens to mint NFTs, and to inspire the community to build on Telegram. 
 
+Try it here: [t.me/BNBMiniGame_bot/bnbminiapp](t.me/BNBMiniGame_bot/bnbminiapp) 
+
 <img src="https://github.com/kang5647/bnb-telegram-demo/assets/76279908/077ce8f2-e4a6-4236-9d1c-69d68089cd43" alt="Example Image" width="450" height="580">
 
 ## Prerequisites
