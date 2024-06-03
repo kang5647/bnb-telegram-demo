@@ -119,6 +119,7 @@ function Mint () {
             {!isButtonPressed && isApproved && <div>Approved allowance. Mint the NFT now!</div>}
             {isConfirming && <div>Waiting for confirmation...</div>}
             {isConfirmed && <div>You've minted an NFT with tokenID: {nextTokenId}</div>}
+            {isConfirmed && <div>NFT address: {NFTAddress}</div>}
             {error && <div style={{ color: 'red' }}>Error: {error}</div>}
         </div>
     );

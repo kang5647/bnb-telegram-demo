@@ -1,4 +1,3 @@
-// src/HomePage.tsx
 import React from 'react';
 import ConnectButton from './Components/ConnectButton';
 import Counter from './Components/Counter';
