@@ -2,6 +2,10 @@
 
 Follow these steps to create a Vite React application, integrate WalletConnect using WAGMI, publish it as a GitHub Page, and deploy it as a Telegram Mini App. This Web3 App aims to demonstrate common on-chain mechanics such as claiming tokens and using those tokens to mint NFTs, and to inspire the community to build on Telegram. 
 
+Try it here: [t.me/BNBMiniGame_bot/bnbminiapp](t.me/BNBMiniGame_bot/bnbminiapp) (copy the link to your browser)
+
+<img src="https://github.com/kang5647/bnb-telegram-demo/assets/76279908/077ce8f2-e4a6-4236-9d1c-69d68089cd43" alt="Example Image" width="450" height="580">
+
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
@@ -9,6 +13,8 @@ Before you begin, ensure you have met the following requirements:
 - Node.js and npm installed
 - A Telegram account to create and test the Mini App
 - MetaMask or another WalletConnect-compatible wallet
+
+<br>
 
 ## Step 1: Set Up Vite React Project
 
@@ -35,6 +41,7 @@ Before you begin, ensure you have met the following requirements:
     ```sh
     npm run dev
     ```
+<br>
 
 ## Step 2: Writing Smart Contracts
 
@@ -129,13 +136,30 @@ contract TokenDistributor {
     }
 }
 ```
-## Step 4: Save the contract ABI
+<br>
+
+## Step 3 Save the contract ABI
+
 Save the ABI (Application Binary Interface) of your smart contract as a TypeScript file.
 1. Generate the ABI: After compiling your smart contract, you will get the ABI from the build artifacts (usually a JSON file).
 ![image](https://github.com/kang5647/bnb-telegram-demo/assets/76279908/e702a9cd-84a7-41c7-98a9-115695098db4)
 
 2. Save the ABI as a TypeScript file: Create a new TypeScript file to store the ABI (can be found in `contracts` folder).
 
+<br>
+
+## Step 4 Setup WalletConnect with WAGMI 
+
+WalletConnect's Web3Modal SDK provides simple-to-use wallet integration into Web3 App. 
+
+Create `.env` and `.env.production` (for deploying as GitHub Pages).
+```
+VITE_WALLETCONNECT_PROJECT_ID=your_walletconnect_project_id
+```
+### Create Web3Modal Component
+Refer to WalletConnect official [documentation](https://docs.walletconnect.com/web3modal/react/about?platform=wagmi) for implementation guide.
+
+<br>
 
 ## Step 5: Creating Components
 
@@ -236,12 +260,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 )
 
 ```
+<br>
 
-Refer to their official [documentation](https://docs.walletconnect.com/web3modal/react/about?platform=wagmi). WalletConnect's Web3Modal SDK provides simple-to-use wallet integration into Web3 App. 
-
-## Step 4: Creating component
-
-## Step 3: Publish to GitHub Pages
+## Step 6: Publish to GitHub Pages
 
 1. **Install the `gh-pages` package:**
 
@@ -284,34 +305,29 @@ Refer to their official [documentation](https://docs.walletconnect.com/web3modal
     - Under **Source**, select `gh-pages` branch.
 
 Your app should now be live at `https://your-username.github.io/your-repo-name/`.
-
-## Step 4: Integrate with Telegram Mini App
+<br>
+## Step 7: Integrate with Telegram Mini App
 
 1. **Set up a Telegram bot:**
 
     - Create a new bot using BotFather on Telegram.
-    - Note down the bot token provided by BotFather.
 
 2. **Configure the Telegram Mini App settings:**
 
-    - Go to the BotFather chat and use the command `/setdomain`.
-    - Enter your app’s domain.
-    - Use `/setuserpic` to set an image for your Mini App.
+    - Go to the BotFather chat and use the command `/newapp`.
+    - Enter your app’s domain. Since you have deployed to GitHub Pages, the domain would be `https://your-username.github.io/your-repo-name/`.
+      
+<img src="https://github.com/kang5647/bnb-telegram-demo/assets/76279908/c54c17ba-d82b-4714-807b-10b99039f61e" alt="Example Image" width="450" height="100">
 
-3. **Deploy your app:**
-
-    - Build your app for production:
-
-        ```sh
-        npm run build
-        ```
-
-    - Deploy the `dist` folder to your web server.
-
-4. **Test the integration:**
+3. **Test the integration:**
 
     - Open your Telegram bot and start a chat.
     - Use the `/start` command to launch your Mini App.
+
+## Disclaimer
+
+WalletConnect currently does not work very well when used in a Telegram Mini App. There are no problems when accessing the webpage in a mobile browser.
+
 
 ## Contributing
 
@@ -322,6 +338,4 @@ Contributions are welcome! Please fork the repository and create a pull request 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
-  Get your [Wallet Connect](https://docs.walletconnect.com/web3modal/about) project ID. <br>
-  Get your [Particle Network](https://dashboard.particle.network/#/) project ID, client key, app ID.
 
