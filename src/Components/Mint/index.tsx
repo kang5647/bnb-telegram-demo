@@ -86,7 +86,7 @@ function Mint () {
             const nextTokenId = Number(nextTokenIdData);
             setNextTokenId(nextTokenId);
 
-            const metadata = 'https://coral-roasted-gopher-138.mypinata.cloud/ipfs/QmcrfuR8JLSQxCpbBNqxt1AJJARs5ygkGgfFG4dkNXwy2P';
+            const metadata = 'https://coral-roasted-gopher-138.mypinata.cloud/ipfs/Qme7Mcipqywi8RZpzTBG4yvHyZfKc7AKvm88ddn9KU7S2h';
             mint({
                 address: NFTAddress,
                 abi: NFTAbi,
