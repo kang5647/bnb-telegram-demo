@@ -4,7 +4,8 @@ Follow these steps to create a Vite React application, integrate WalletConnect u
 
 Try it here: [t.me/BNBMiniGame_bot/bnbminiapp](t.me/BNBMiniGame_bot/bnbminiapp) (copy the link to your browser)
 
-<img src="https://github.com/kang5647/bnb-telegram-demo/assets/76279908/077ce8f2-e4a6-4236-9d1c-69d68089cd43" alt="Example Image" width="450" height="580">
+<img src="https://github.com/kang5647/bnb-telegram-demo/assets/76279908/977af764-9e95-4f41-a331-06ad6fc5870c" alt="Example Image" width="500" height="450">
+
 
 ## Prerequisites
 
