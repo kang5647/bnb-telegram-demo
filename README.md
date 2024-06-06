@@ -1,4 +1,4 @@
-# Vite React WalletConnect WAGMI Telegram Mini App
+# Vite React WalletConnect WAGMI Telegram Mini Dapp
 
 Follow these steps to create a Vite React application, integrate WalletConnect using WAGMI, publish it as a GitHub Page, and deploy it as a Telegram Mini App. This Web3 App aims to demonstrate common on-chain mechanics such as claiming tokens and using those tokens to mint NFTs, and to inspire the community to build on Telegram. 
 
